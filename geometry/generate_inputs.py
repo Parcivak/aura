@@ -555,14 +555,14 @@ def identify_geometry_parameters(
     """
 
     geometry = {
-        "fuel_radius_m": None,
-        "gap_radius_m": None,
-        "clad_outer_radius_m": None,
-        "pin_pitch_m": None,
-        "fuel_height_m": None,
-        "assembly_width_m": None,
-        "assembly_nx": None,
-        "assembly_ny": None,
+        "fuel_radius_m": 0.4096,
+        "gap_radius_m": 0.41778,
+        "clad_outer_radius_m": 0.47498,
+        "pin_pitch_m": 1.26,
+        "fuel_height_m": 385.153,
+        "assembly_width_m": 21.42,
+        "assembly_nx": 17,
+        "assembly_ny": 17,
     }
 
     # ------------------------------------------------------------------------

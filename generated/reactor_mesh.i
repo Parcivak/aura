@@ -38,7 +38,7 @@
     ymax = 0.01
 
     zmin = 0.0
-    zmax = 1.0 # Active fuel height obtained from MCNP geometry.
+    zmax = 385.153 # Active fuel height obtained from MCNP geometry.
   []
 
   # ==========================================================================
