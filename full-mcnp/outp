@@ -1,0 +1,403 @@
+          Code Name & Version = mcnp6, 6.3.1, production
+  
+     _/      _/        _/_/_/       _/      _/       _/_/_/         _/_/_/ 
+    _/_/  _/_/      _/             _/_/    _/       _/    _/     _/        
+   _/  _/  _/      _/             _/  _/  _/       _/_/_/       _/_/_/     
+  _/      _/      _/             _/    _/_/       _/           _/    _/    
+ _/      _/        _/_/_/       _/      _/       _/             _/_/       
+  
+  +------------------------------------------------------------------------------------------------------------------+
+  | Copyright (c) 2018. Triad National Security, LLC. All rights reserved.                                           |
+  |   This program was produced under U.S. Government contract 89233218CNA000001 for Los Alamos National Laboratory  |
+  | (LANL), which is operated by Triad National Security, LLC for the U.S. Department of Energy/National Nuclear     |
+  | Security Administration.                                                                                         |
+  |   For a period of five years from February 14, 2018, the U.S. Government is granted for itself and others acting |
+  | on its behalf a nonexclusive, paid-up, irrevocable, worldwide license in this data to reproduce, prepare         |
+  | derivative works, and perform publicly and display publicly, by or on behalf of the U.S. Government.             |
+  |   Subsequent to the specified period or any extension granted, the U.S. Government is granted for itself and     |
+  | others acting on its behalf a nonexclusive, paid-up, irrevocable worldwide license in this material to           |
+  | reproduce, prepare derivative works, distribute copies to the public, perform publicly and display publicly, and |
+  | to permit others to do so. The specific term of the license can be identified by inquiry made to the Contractor  |
+  | or DOE/NNSA.                                                                                                     |
+  |   User is subject to applicable United States and foreign laws, regulations, rules and decrees with respect to   |
+  | any transfer of the Intellectual Property and related technical data to foreign countries, including the U.S.    |
+  | Foreign Corrupt Practices Act, the Arms Control Act, the Export Administration Act, the U.S. Anti-Boycott Laws,  |
+  | and any regulations promulgated thereunder, including the International Traffic in Arms Regulations (ITAR), the  |
+  | U.S. Export Administration Regulations (EAR) and explicitly Title 10, Part 810 of the United States Code of      |
+  | Federal Regulations. FAILURE TO CONFORM TO SUCH LAWS, REGULATIONS, RULES, AND DECREES MAY RESULT IN CRIMINAL     |
+  | LIABILITY UNDER U.S. LAW.                                                                                        |
+  |   NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY THIS NOTICE. THIS SOFTWARE IS       |
+  | PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT |
+  | NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.   |
+  | NEITHER THE UNITED STATES NOR THE UNITED STATES DEPARTMENT OF ENERGY/NATIONAL NUCLEAR SECURITY ADMINSTRATION,    |
+  | NOR TRIAD NATIONAL SECURITY, LLC, NOR ANY OF THEIR EMPLOYEES, MAKES ANY WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES |
+  | ANY LEGAL LIABILITY OR RESPONSIBILITY FOR THE ACCURACY, COMPLETENESS, OR USEFULNESS OF ANY INFORMATION,          |
+  | APPARATUS, PRODUCT, OR PROCESS DISCLOSED, OR REPRESENTS THAT ITS USE WOULD NOT INFRINGE PRIVATELY OWNED RIGHTS.  |
+  +------------------------------------------------------------------------------------------------------------------+
+  
+1mcnp6 version 6.3.1 ld=02/08/25                     09/29/26 09:44:37 
+ *************************************************************************                 probid =  09/29/26 09:44:37 
+Source version = release/6.3.1-e417dfcb17
+ i=Aura_MCNP_Model.inp
+
+ 
+  warning.  universe map (print table 128) disabled.
+ 
+  comment.  Physics models disabled.
+         1-       Full mode of Aura
+         2-       c Description =================================================================
+         3-       c A full model of AURA. Fast reactor utilizing PWR fuel utilizing AP1000 core
+         4-       c gemoetry. Some may say this MCNP file is Aura
+         5-       c =============================================================================
+         6-       c Cell Cards
+         7-       c =============================================================================
+         8-       c defining active length of fuel pins
+         9-       c -----------------------------------------------------------------------------
+        10-       c fuel itself
+        11-       1 1 -10.41    -1 7 -8         imp:n=1 u=1
+        12-       c helium gap
+        13-       2 2 -1.225e-3  1 -2 7 -8      imp:n=1 u=1
+        14-       c cladding
+        15-       3 3 -6.5       2 -3 7 -9      imp:n=1 u=1
+        16-       c defining inconel plenum spring
+        17-       c -----------------------------------------------------------------------------
+        18-       c inner helium
+        19-       4 2 -1.225e-3 -11 8 -9        imp:n=1 u=1
+        20-       c inconel cylinder 80% density of rnominal inconel (8.19)
+        21-       5 4 -6.552     11 -12 8 -9    imp:n=1 u=1
+        22-       c outer helium
+        23-       6 2 -1.225e-3  12 -2 8 -9     imp:n=1 u=1
+        24-       c Defining top and bottom plugs
+        25-       c -----------------------------------------------------------------------------
+        26-       7 3 -6.5      -3 9 -5         imp:n=1 u=1
+        27-       8 3 -6.5      -3 -7 4         imp:n=1 u=1
+        28-       c defining control rods
+        29-       c -----------------------------------------------------------------------------
+        30-       c control rods
+        31-       9 5  -10.17    -13 15 -5      imp:n=1 u=2
+        32-       c control rod cladding
+        33-       10 6 -7.92     13 -14 16 -5   imp:n=1 u=2
+        34-       c bottom plug
+        35-       11 6 -7.92    -14 -15 16      imp:n=1 u=2
+        36-       c defining outer coolant for fuel rods and guide rods
+        37-       c -----------------------------------------------------------------------------
+        38-       12 2 -1.225e-3    3:-4:5      imp:n=1 u=1
+        39-       13 2 -1.225e-3    14:-16:5    imp:n=1 u=2
+        40-       c Defining the fuel assembly lattice
+        41-       c -----------------------------------------------------------------------------
+        42-       14 2 -1.225e-3 -111 112 113 -114       imp:n=1 u=3 lat=1 fill=-8:8 -8:8 0:0
+        43-             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+        44-             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+        45-             1 1 1 1 1 2 1 1 2 1 1 2 1 1 1 1 1
+        46-             1 1 1 2 1 1 1 1 1 1 1 1 1 2 1 1 1
+        47-             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+        48-             1 1 2 1 1 2 1 1 2 1 1 2 1 1 2 1 1
+        49-             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+        50-             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+        51-             1 1 2 1 1 2 1 1 2 1 1 2 1 1 2 1 1
+        52-             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+        53-             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+        54-             1 1 2 1 1 2 1 1 2 1 1 2 1 1 2 1 1
+        55-             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+        56-             1 1 1 2 1 1 1 1 1 1 1 1 1 2 1 1 1
+        57-             1 1 1 1 1 2 1 1 2 1 1 2 1 1 1 1 1
+        58-             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+        59-             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+        60-       c
+        61-       c Defining fuel assembely
+        62-       c -----------------------------------------------------------------------------
+        63-       15 2 -1.225e-3 1123 -1124 -115 116 -117 118       imp:n=1 Fill=3 u=6
+        64-       c defining the reactor core lattice
+        65-       c -----------------------------------------------------------------------------
+        66-       16 2 -1.225e-3 -115 116 -117 118       imp:n=1 u=4 lat=1 fill=-8:8 -8:8 0:0
+        67-             4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4
+        68-             4 4 4 4 4 4 4 6 6 6 4 4 4 4 4 4 4
+        69-             4 4 4 4 4 6 6 6 6 6 6 6 4 4 4 4 4
+        70-             4 4 4 4 6 6 6 6 6 6 6 6 6 4 4 4 4
+        71-             4 4 4 6 6 6 6 6 6 6 6 6 6 6 4 4 4
+        72-             4 4 6 6 6 6 6 6 6 6 6 6 6 6 6 4 4
+        73-             4 4 6 6 6 6 6 6 6 6 6 6 6 6 6 4 4
+        74-             4 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 4
+        75-             4 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 4
+        76-             4 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 4
+        77-             4 4 6 6 6 6 6 6 6 6 6 6 6 6 6 4 4
+        78-             4 4 6 6 6 6 6 6 6 6 6 6 6 6 6 4 4
+        79-             4 4 4 6 6 6 6 6 6 6 6 6 6 6 4 4 4
+        80-             4 4 4 4 6 6 6 6 6 6 6 6 6 4 4 4 4
+        81-             4 4 4 4 4 6 6 6 6 6 6 6 4 4 4 4 4
+        82-             4 4 4 4 4 4 4 6 6 6 4 4 4 4 4 4 4
+        83-             4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4
+        84-       c
+        85-       c Defining core
+        86-       c -----------------------------------------------------------------------------
+        87-       17 2 -1.225e-3 1123 -1124 -1000        imp:n=1 Fill=4
+        88-       c Defining Barrel and pressure vessel
+        89-       c -----------------------------------------------------------------------------
+        90-       c barrel
+        91-       18 6 -7.92     1123 -1124 1000 -1001  imp:n=1
+        92-       c coolant outside barrel
+        93-       19 2 -1.225e-3 1123 -1124 1001 -1002  imp:n=1
+        94-       c pressure vessel
+        95-       20 7 -7.8      1123 -1124 1002 -1003  imp:n=1
+        96-       c Everything Outside
+        97-       21 0          -1123:1124:1003         imp:n=0
+        98-       
+        99-       c =============================================================================
+       100-       c Surface Cards
+       101-       c =============================================================================
+       102-       c Defining the fuel rods themselves
+       103-       c -----------------------------------------------------------------------------
+       104-       c Cylidrical bounding surfaces of fuel pin
+       105-       1 cz 0.4096
+       106-       c Gap
+       107-       2 cz 0.41778
+       108-       c Cladding
+       109-       3 cz 0.47498
+       110-       c Defining fuel rod geometry from bottom to top (Many wont be use but defined
+       111-       c just in case we find out later specific parts have differing materials)
+       112-       c -----------------------------------------------------------------------------
+       113-       c Perpendicular bounding surfaces of fuel pin
+       114-       4 pz 0
+       115-       5 pz 385.153
+       116-       c bounding for lower end cap
+       117-       6 pz 0.988
+       118-       c bounding surfaces for active fuel
+       119-       7 pz 1.468
+       120-       8 pz 367.228
+       121-       c bounding for plenum spring
+       122-       9 pz 383.685
+       123-       c bounding for upper spacer
+       124-       10 pz 384.166
+       125-       c Defining other fuel rod and control rod features
+       126-       c -----------------------------------------------------------------------------
+       127-       c Defining plenum spring cylinder
+       128-       11 cz 0.273
+       129-       12 cz 0.4
+       130-       c Defining control rod cladding dimensions
+       131-       13 cz  0.5715
+       132-       14 cz  0.612
+       133-       c Defining control rod height
+       134-       15 pz 150
+       135-       16 pz 149.9595
+       136-       c Defining Lattice Values
+       137-       c -----------------------------------------------------------------------------
+       138-       c Bounding surfaces for fuel pin
+       139-       111 py 0.63
+       140-       112 PY -0.63
+       141-       113 px -0.63
+       142-       114 px 0.63
+       143-       c Bounding surfaces for fuel assembely
+       144-       115 PY 10.7
+       145-       116 PY -10.7
+       146-       117 px 10.7
+       147-       118 px -10.7
+       148-       c Bounding surfaces for reactor core lattice
+       149-       119 py 160.5
+       150-       120 PY -160.5
+       151-       121 px 160.5
+       152-       122 px -160.5
+       153-       c Dfining Barrel and reactor pressure vessel
+       154-       c -----------------------------------------------------------------------------
+       155-       c inner and outer barrel diameter
+       156-       1000 cz 169.85
+       157-       1001 cz 174.95
+       158-       c Inner and outer pressure vessel diameter
+       159-       1002 cz 202
+       160-       1003 cz 207.87
+       161-       c Defining bounding surfaces sheilding team will remedy this
+       162-       1123 pz -100
+       163-       1124 pz  485.153
+       164-       
+       165-       c =============================================================================
+       166-       c Data Cards
+       167-       c =============================================================================
+       168-       c
+       169-       c Material cards --------------------------------------------------------------
+       170-       c 5 wt% enriched UO2
+       171-       m1 8016.70c -0.11852 92235.70c -0.0352592 92238.70c -0.8462108
+       172-       mt1 o2-u.20t u-o2.30t
+       173-       c He gap backfilled gas (He) 1.225e-3 g/cm3
+       174-       m2 2004.70c 0.99999863 2003.70c 0.0000137
+       175-       c Zircaloy-4 cladding 6.56 g/cm3
+       176-       m3       8016.70c   0.00713 $ Oxygen
+       177-       c        --- Chromium ---
+       178-               24050.70c   0.00008
+       179-               24052.70c   0.00147
+       180-               24053.70c   0.00017
+       181-               24054.70c   0.00004
+       182-       c        --- Iron ---
+       183-               26054.70c   0.00020
+       184-               26056.70c   0.00315
+       185-               26057.70c   0.00007
+       186-               26058.70c   0.00001
+       187-       c        --- Zirconium ---
+       188-               40090.70c   0.50244
+       189-               40091.70c   0.10957
+       190-               40092.70c   0.16748
+       191-               40094.70c   0.16973
+       192-               40096.70c   0.02734
+       193-       c        --- Tin ---
+       194-               50112.70c   0.00011
+       195-               50114.70c   0.00007
+       196-               50115.70c   0.00004
+       197-               50116.70c   0.00162
+       198-               50117.70c   0.00085
+       199-               50118.70c   0.00269
+       200-               50119.70c   0.00096
+       201-               50120.70c   0.00362
+       202-               50122.70c   0.00051
+       203-               50124.70c   0.00064
+       204-       c Inconel 718 Plenum Spring 8.19 g/cm3
+       205-       m4       28058.70c   0.36063 $ Nickel
+       206-                28060.70c   0.13890
+       207-                28061.70c   0.00604
+       208-                28062.70c   0.01925
+       209-                28064.70c   0.00491
+       210-       c        --- Chromium ---
+       211-                24050.70c   0.00940
+       212-                24052.70c   0.18133
+       213-                24053.70c   0.02056
+       214-                24054.70c   0.00512
+       215-       c        --- Iron ---
+       216-                26054.70c   0.01053
+       217-                26056.70c   0.16534
+       218-                26057.70c   0.00382
+       219-                26058.70c   0.00051
+       220-       c        --- Niobium ---
+       221-                41093.70c   0.03270
+       222-       c        --- Molybdenum ---
+       223-                42092.70c   0.00278
+       224-                42094.70c   0.00173
+       225-                42095.70c   0.00299
+       226-                42096.70c   0.00314
+       227-                42097.70c   0.00180
+       228-                42098.70c   0.00455
+       229-                42100.70c   0.00182
+       230-       c        --- Titanium ---
+       231-                22046.70c   0.00092
+       232-                22047.70c   0.00083
+       233-                22048.70c   0.00826
+       234-                22049.70c   0.00061
+       235-                22050.70c   0.00058
+       236-       c        --- Aluminum ---
+       237-                13027.70c   0.01100
+       238-       c Silver-Indium-Cadmium (Ag-In-Cd 80-15-5) 10.17 g/cm3
+       239-       m5       47107.70c   0.41938 $ Silver
+       240-                47109.70c   0.38962
+       241-       c        --- Indium ---
+       242-                49113.70c   0.00611
+       243-                49115.70c   0.13639
+       244-       c        --- Cadmium ---
+       245-                48106.70c   0.00061
+       246-                48108.70c   0.00043
+       247-                48110.70c   0.00606
+       248-                48111.70c   0.00621
+       249-                48112.70c   0.01170
+       250-                48113.70c   0.00593
+       251-                48114.70c   0.01393
+       252-                48116.70c   0.00363
+       253-       c Stainless Steel 304 7.92 g/cm3
+       254-       m6       26054.70c   0.04013 $ Iron
+       255-                26056.70c   0.62988
+       256-                26057.70c   0.01455
+       257-                26058.70c   0.00194
+       258-       c        --- Chromium ---
+       259-                24050.70c   0.00876
+       260-                24052.70c   0.16892
+       261-                24053.70c   0.01915
+       262-                24054.70c   0.00477
+       263-       c        --- Nickel ---
+       264-                28058.70c   0.05916
+       265-                28060.70c   0.02279
+       266-                28061.70c   0.00099
+       267-                28062.70c   0.00316
+       268-                28064.70c   0.00080
+       269-       c        --- Manganese ---
+       270-                25055.70c   0.02010
+       271-       c        --- Silicon ---
+       272-                14028.70c   0.00452
+       273-                14029.70c   0.00023
+       274-                14030.70c   0.00015
+       275-       c SA-508 Grade 3 Class 1 Carbon Steel (AP1000 Pressure Vessel)
+       276-       c Nominal density: 7.80 g/cm3
+       277-       m7       26054.70c   0.05621 $ Iron
+       278-                26056.70c   0.88232
+       279-                26057.70c   0.02038
+       280-                26058.70c   0.00271
+       281-       c        --- Manganese ---
+       282-                25055.70c   0.01362
+       283-       c        --- Carbon ---
+       284-                6000.70c    0.00923
+       285-       c        --- Nickel ---
+       286-                28058.70c   0.00483
+       287-                28060.70c   0.00186
+       288-                28061.70c   0.00008
+       289-                28062.70c   0.00026
+       290-                28064.70c   0.00007
+       291-       c        --- Silicon ---
+       292-                14028.70c   0.00364
+       293-                14029.70c   0.00018
+       294-                14030.70c   0.00012
+       295-       c        --- Molybdenum ---
+       296-                42092.70c   0.00043
+       297-                42094.70c   0.00027
+       298-                42095.70c   0.00046
+       299-                42096.70c   0.00048
+       300-                42097.70c   0.00028
+       301-                42098.70c   0.00070
+       302-                42100.70c   0.00028
+       303-       c        --- Chromium ---
+       304-                24050.70c   0.00007
+       305-                24052.70c   0.00134
+       306-                24053.70c   0.00015
+       307-                24054.70c   0.00004
+       308-       c Command cards ---------------------------------------------------------------
+       309-       Mode n
+       310-       KCODE 50000 1.0 30 130 40000 0 6500 1
+       311-       KSRC 1.26 0 200
+
+ ***************************************************
+ * Random Number Generator  =                    1 *
+ * Random Number Seed       =       19073486328125 *
+ * Random Number Multiplier =       19073486328125 *
+ * Random Number Adder      =                    0 *
+ * Random Number Bits Used  =                   48 *
+ * Random Number Stride     =               152917 *
+ ***************************************************
+
+ 
+  comment.  total fission nubar data are being used.
+ 
+  comment.  surface     1123   appears more than once in a chain.
+
+ surface     1123   is in cells       15 and       17 in chain
+       15  <       16  <       17
+ 
+  comment.  surface     1124   appears more than once in a chain.
+
+ surface     1124   is in cells       15 and       17 in chain
+       15  <       16  <       17
+ 
+  comment.  surface      115   appears more than once in a chain.
+
+ surface      115   is in cells       15 and       16 in chain
+       15  <       16  <       17
+ 
+  comment.  surface      116   appears more than once in a chain.
+
+ surface      116   is in cells       15 and       16 in chain
+       15  <       16  <       17
+ 
+  comment.  surface      117   appears more than once in a chain.
+
+ surface      117   is in cells       15 and       16 in chain
+       15  <       16  <       17
+ 
+  comment.  surface      118   appears more than once in a chain.
+
+ surface      118   is in cells       15 and       16 in chain
+       15  <       16  <       17
+
+ bad trouble in subroutine ixsdir of imcn                             
+
+ data file xsdir_mcnp6.3 does not exist.
