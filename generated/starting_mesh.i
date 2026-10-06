@@ -14,7 +14,7 @@
     assembly_pitch = 21.42
 
     axial_regions = '300.0'
-    axial_mesh_intervals = '30'
+    axial_mesh_intervals = '300'
 
     # Boundary IDs for the 3-D core
     bottom_boundary_id = 201
@@ -108,6 +108,20 @@
 
     dummy_assembly_name = empty
     extrude = true
+  []
+
+  [y_plane]
+  type = PlaneDeletionGenerator
+  input = core
+  normal = '-1 0 0'
+  point = '0 0 0'
+  []
+
+  [xy_plane]
+  type = PlaneDeletionGenerator
+  input = y_plane
+  normal = '1 -1 0'
+  point = '0 0 0'
   []
 []
 

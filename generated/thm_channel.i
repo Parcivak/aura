@@ -1,23 +1,4 @@
-# ============================================================================
-# Aura reactor thermal-hydraulics input
-#
-# GENERATED AUTOMATICALLY FROM THE MCNP MODEL.
-#
-# Edit the Python generator rather than manually changing values that are
-# supposed to come from MCNP.
-#
-# MOOSE THM uses SI units:
-#
-#     length       m
-#     mass         kg
-#     time         s
-#     temperature  K
-#     pressure     Pa
-# ============================================================================
-
-# ----------------------------------------------------------------------------
 # GLOBAL SIMULATION PARAMETERS
-# ----------------------------------------------------------------------------
 
 T_in = 300.0
 m_dot_in = 1.0
@@ -49,14 +30,8 @@ p_out = 1000000.0
   fp = he
 []
 
-# ----------------------------------------------------------------------------
-# HELIUM FLUID PROPERTIES
-# ----------------------------------------------------------------------------
-
 [FluidProperties]
-
   [he]
-
     type = IdealGasFluidProperties
 
     # Helium molar mass [kg/mol].
