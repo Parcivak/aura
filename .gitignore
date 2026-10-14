@@ -1,10 +1,11 @@
 .libs
+full-mcnp/out*
+full-mcnp/strc*
 *.la
 *.lo
 *.d
 *.o
 *.a
-*-opt
 *-optimized
 *-dbg
 *-debug
