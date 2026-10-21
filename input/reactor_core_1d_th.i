@@ -14,11 +14,7 @@
 #   units (m, m^2, m, Pa, K, W). The 1D TH model does not directly reuse the detailed
 #   Reactor-module mesh; derive equivalent channel/rod parameters from that geometry.
 
-#######################################
-# User-editable model parameters
-#######################################
 
-# Axial domain. If your reactor mesh uses 300.0 for a 300 cm active height, enter 3.0 m here.
 core_length = 3.0              # m -- active heated length; update CSV z coordinates if changed
 n_axial = 30                   # axial finite-volume / heat-structure intervals
 
@@ -45,9 +41,7 @@ initial_velocity = 20.0         # m/s -- initial guess; should be consistent wit
 T_solid_initial = 700.0         # K -- initial fuel/gap/cladding temperature
 wall_htc = 1.0e4                # W/(m^2 K) -- placeholder constant heat-transfer coefficient
 
-#######################################
-# Spatial functions
-#######################################
+
 [Functions]
   # Reads axial positions [m] and relative MCNP axial heating values from CSV.
   # The CSV must span the active length (or use endpoint values at z=0 and z=core_length).
@@ -63,9 +57,7 @@ wall_htc = 1.0e4                # W/(m^2 K) -- placeholder constant heat-transfe
   []
 []
 
-#######################################
-# Initial conditions / THM defaults
-#######################################
+
 [GlobalParams]
   initial_p = ${p_out}
   initial_vel = ${initial_velocity}
@@ -76,9 +68,7 @@ wall_htc = 1.0e4                # W/(m^2 K) -- placeholder constant heat-transfe
   scaling_factor_1phase = '1 1e-2 1e-4'
 []
 
-#######################################
-# Fluid and solid properties
-#######################################
+
 [FluidProperties]
   # Simplified ideal-gas helium placeholder. Replace/validate against properties over
   # your actual pressure/temperature range before using results quantitatively.
@@ -123,9 +113,6 @@ wall_htc = 1.0e4                # W/(m^2 K) -- placeholder constant heat-transfe
   []
 []
 
-#######################################
-# 1D components
-#######################################
 [Components]
   [total_power]
     type = TotalPower
@@ -197,9 +184,7 @@ wall_htc = 1.0e4                # W/(m^2 K) -- placeholder constant heat-transfe
   []
 []
 
-#######################################
 # Monitoring outputs
-#######################################
 [Postprocessors]
   [coolant_inlet_temperature]
     type = SideAverageValue
@@ -241,9 +226,7 @@ wall_htc = 1.0e4                # W/(m^2 K) -- placeholder constant heat-transfe
   # a variable name rather than the scalar perimeter accepted by the component.
 []
 
-#######################################
 # Solver and output
-#######################################
 [Preconditioning]
   [SMP_PJFNK]
     type = SMP
