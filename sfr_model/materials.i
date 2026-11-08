@@ -7,14 +7,14 @@
   []
   
   [sodium_enthalpy]
-  type = INSFVEnthalpyFunctorMaterial
-  temperature = temp_fluid
-  rho = rho
-  h_in = h
-  assumed_constant_cp = false
-  block = background
+    type = INSFVEnthalpyFunctorMaterial
+    temperature = temp_fluid
+    rho = rho
+    h_in = h
+    assumed_constant_cp = false
+    block = background
+    []
   []
-[]
 
 [materials]
   [fuel]

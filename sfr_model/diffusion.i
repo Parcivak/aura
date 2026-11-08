@@ -1,8 +1,11 @@
 !include ./materials.i
+!include ./boundary.i
+advected_interp_method = 'average'
+velocity_interp_method = 'rc'
 
 [Mesh/fuel_pin]
   type = FileMeshGenerator
-  file = ./concentric_circle_in.e
+  file = ./geometry.e
 []
 
 [Variables]
@@ -69,7 +72,7 @@
     variable = pressure
     advected_interp_method = ${advected_interp_method}
     velocity_interp_method = ${velocity_interp_method}
-    rho = ${rho}
+    rho = rho
     block = background
   []
   [mean_zero_pressure]

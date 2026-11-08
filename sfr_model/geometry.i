@@ -4,6 +4,7 @@ clad_radius = 0.75      # [cm]
 fuel_height = 300
 
 [Mesh]
+# First generate the concentric circles of the fuel, gap, clad, and surrounding hexagon for the sodium.
   [concentric_circle]
     type = PolygonConcentricCircleMeshGenerator
     num_sides = 6
@@ -37,15 +38,37 @@ fuel_height = 300
       clad_sodium_clad_side'
   []
 
+#Extrude the hexagon with concentric circles out into a fuel assembly, again based on the variables delcared at start of file.
   [extruded_channel]
     type = AdvancedExtruderGenerator
     input = concentric_circle
     heights = ${fuel_height}
     num_layers = 1
     direction = '0 0 1'
-    
-    bottom_boundary = bottom
-    top_boundary = top
-    side_boundary = side
+  []
+  
+#We need named boundaries at the top and bottom to be the inlet and outlet of the sodium, create those here.
+  [sodium_inlet]
+    type = ParsedGenerateSideset
+    input = extruded_channel
+
+    combinatorial_geometry = 'abs(z) < 1e-8'
+    included_subdomains = sodium
+    include_only_external_sides = true
+    normal = '0 0 -1'
+
+    new_sideset_name = sodium_inlet
+  []
+
+  [sodium_outlet]
+    type = ParsedGenerateSideset
+    input = sodium_inlet
+
+    combinatorial_geometry = 'abs(z - ${fuel_height}) < 1e-8'
+    included_subdomains = sodium
+    include_only_external_sides = true
+    normal = '0 0 1'
+
+    new_sideset_name = sodium_outlet
   []
 []
