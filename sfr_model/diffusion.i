@@ -3,11 +3,6 @@
 advected_interp_method = 'average'
 velocity_interp_method = 'rc'
 
-[Mesh/fuel_pin]
-  type = FileMeshGenerator
-  file = ./geometry.e
-[]
-
 [Variables]
   [temp_solid]
     initial_condition = 600
