@@ -1,45 +1,49 @@
-!include ./materials.i
 !include ./boundary.i
+!include ./materials.i
 advected_interp_method = 'average'
 velocity_interp_method = 'rc'
+
+[GlobalParams]
+  rhie_chow_user_object = 'rc'
+[]
 
 [Variables]
   [temp_solid]
     initial_condition = 600
-    block = background
+    block = 'pellet gap clad'
   []
 
   # Sodium velocity
   [vel_x]
     type = INSFVVelocityVariable
-    block = background
+    block = sodium
   []
 
   [vel_y]
     type = INSFVVelocityVariable
-    block = background
+    block = sodium
   []
 
   [vel_z]
     type = INSFVVelocityVariable
-    block = background
+    block = sodium
   []
 
   [pressure]
     type = INSFVPressureVariable
-    block = background
+    block = sodium
   []
 
   [temp_fluid]
     type = INSFVEnergyVariable
     initial_condition = 600
-    block = background
+    block = sodium
   []
 
   [lambda]
     family = SCALAR
     order = first
-    block = background
+    block = sodium
   []
 []
 
@@ -58,6 +62,18 @@ velocity_interp_method = 'rc'
     x = vel_x
     y = vel_y
     z = vel_z
+    block = sodium
+  []
+[]
+
+[UserObjects]
+  [rc]
+    type = INSFVRhieChowInterpolator
+    u = vel_x
+    v = vel_y
+    w = vel_z
+    pressure = pressure
+    block = sodium
   []
 []
 
@@ -68,13 +84,13 @@ velocity_interp_method = 'rc'
     advected_interp_method = ${advected_interp_method}
     velocity_interp_method = ${velocity_interp_method}
     rho = rho
-    block = background
+    block = sodium
   []
   [mean_zero_pressure]
     type = FVIntegralValueConstraint
     variable = pressure
     lambda = lambda
-    block = background
+    block = sodium
   []
 
 
@@ -85,21 +101,21 @@ velocity_interp_method = 'rc'
     advected_interp_method = ${advected_interp_method}
     rho = rho
     momentum_component = 'x'
-    block = background
+    block = sodium
   []
   [u_viscosity]
     type = INSFVMomentumDiffusion
     variable = vel_x
     mu = mu
     momentum_component = 'x'
-    block = background
+    block = sodium
   []
   [u_pressure]
     type = INSFVMomentumPressure
     variable = vel_x
     momentum_component = 'x'
     pressure = pressure
-    block = background
+    block = sodium
   []
 
   [v_advection]
@@ -109,21 +125,21 @@ velocity_interp_method = 'rc'
     advected_interp_method = ${advected_interp_method}
     rho = rho
     momentum_component = 'y'
-    block = background
+    block = sodium
   []
   [v_viscosity]
     type = INSFVMomentumDiffusion
     variable = vel_y
     mu = mu
     momentum_component = 'y'
-    block = background
+    block = sodium
   []
   [v_pressure]
     type = INSFVMomentumPressure
     variable = vel_y
     momentum_component = 'y'
     pressure = pressure
-    block = background
+    block = sodium
   []
 
   [w_advection]
@@ -133,28 +149,28 @@ velocity_interp_method = 'rc'
     advected_interp_method = ${advected_interp_method}
     rho = rho
     momentum_component = 'z'
-    block = background
+    block = sodium
   []
   [w_viscosity]
     type = INSFVMomentumDiffusion
     variable = vel_z
     mu = mu
     momentum_component = 'z'
-    block = background
+    block = sodium
   []
   [w_pressure]
     type = INSFVMomentumPressure
     variable = vel_z
     momentum_component = 'z'
     pressure = pressure
-    block = background
+    block = sodium
   []
 
   [temp_conduction]
     type = FVDiffusion
     coeff = 'k'
     variable = temp_fluid
-    block = background
+    block = sodium
   []
 
   [temp_advection]
@@ -163,9 +179,11 @@ velocity_interp_method = 'rc'
     advected_quantity = rho_h
     velocity_interp_method = ${velocity_interp_method}
     advected_interp_method = ${advected_interp_method}
-    block = background
+    block = sodium
   []
+[]
 
+[Kernels]
   [solid_conduction]
     type = HeatConduction
     variable = temp_solid

@@ -3,7 +3,7 @@
     type = ADGenericFunctorMaterial
     prop_names = 'mu'
     prop_values = '0.00042'
-    block = background
+    block = sodium
   []
   
   [sodium_enthalpy]
@@ -12,8 +12,14 @@
     rho = rho
     h_in = h
     assumed_constant_cp = false
-    block = background
+    block = sodium
     []
+[]
+
+[FluidProperties/sodium]
+  type = SodiumProperties
+  thermal_conductivity = 123
+  specific_heat = 456
 []
 
 #Here we define each of the solid materials.
@@ -44,7 +50,7 @@
   [sodium]
     type = SodiumPropertiesMaterial
     temperature = temp_fluid
-    block = background
+    block = sodium
     outputs = all
   []
 []

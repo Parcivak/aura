@@ -84,3 +84,6 @@ framework/contrib/hit/hit
 
 # Sync script
 sfr_model/sync.sh
+
+#emacs
+\#*\#
