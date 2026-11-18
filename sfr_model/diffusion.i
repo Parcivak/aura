@@ -10,7 +10,7 @@ velocity_interp_method = 'rc'
 [Variables]
   [temp_solid]	
     type = MooseVariableFVReal
-    initial_condition = 600
+    initial_condition = 800
     block = 'pellet clad'
   []
 
@@ -206,6 +206,7 @@ velocity_interp_method = 'rc'
   petsc_options_value = 'lu NONZERO'
   nl_rel_tol = 1e-12
   nl_max_its = 5000
+  automatic_scaling = true
 []
 
 [Outputs]
