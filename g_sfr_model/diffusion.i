@@ -248,9 +248,9 @@ velocity_interp_method = 'rc'
   solve_type = 'NEWTON'
   petsc_options_iname = '-pc_type -pc_factor_shift_type'
   petsc_options_value = 'lu NONZERO'
-  nl_rel_tol = 1e-10
-  nl_abs_tol = 1e-10
-  nl_max_its = 30
+  nl_rel_tol = 1e-7
+  nl_abs_tol = 1e-7
+  nl_max_its = 100
   line_search = 'bt'
 []
 
