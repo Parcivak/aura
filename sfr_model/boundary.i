@@ -5,6 +5,24 @@
 
 inlet_rate = 30
 
+[Functions]
+  [linear_heat]
+    type = PiecewiseLinear
+    axis = 2
+    data_file = heat_rate.csv
+    format = columns
+    x_index_in_file = 0
+    y_index_in_file = 1
+  []
+
+  [volumetric_heat]
+    type = ParsedFunction
+    symbol_names = 'q r'
+    symbol_values = 'linear_heat 0.00227097' # radius in meters
+    expression = 'q / (pi * r^2)'
+  []
+[]
+
 [FVBCs]
   [outlet_x]
     type = INSFVInletVelocityBC

@@ -196,6 +196,13 @@ velocity_interp_method = 'rc'
     coeff = thermal_conductivity_clad
     block = clad
   []
+
+  [heat_source]
+    type = FVBodyForce
+    variable = temp_solid
+    function = volumetric_heat
+    block = pellet
+  []
 []
 
 [Executioner]

@@ -1,7 +1,7 @@
-pellet_radius =  0.227097  # [cm]
-hole_radius = 0.268089     # [cm]
-clad_radius = 0.309081      # [cm]
-fuel_height = 90
+pellet_radius =  0.00227097  # [m]
+hole_radius = 0.00268089     # [m]
+clad_radius = 0.00309081     # [m]
+fuel_height = 0.9
 
 [Mesh]
 # First generate the concentric circles of the fuel, gap, clad, and surrounding hexagon for the sodium.

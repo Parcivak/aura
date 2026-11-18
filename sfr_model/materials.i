@@ -72,7 +72,7 @@
     type = HeatConductionMaterial
     temperature = temp_solid
     block = clad
-    specific_heat_temperature_function =  cp_clad
+#    specific_heat_temperature_function =  cp_clad
     declare_suffix = clad
   []
   
