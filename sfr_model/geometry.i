@@ -1,7 +1,7 @@
-hole_radius = 0.644     # [cm]
-pellet_radius =  0.494  # [cm]
-clad_radius = 0.75      # [cm]
-fuel_height = 300
+pellet_radius =  0.227097  # [cm]
+hole_radius = 0.268089     # [cm]
+clad_radius = 0.309081      # [cm]
+fuel_height = 90
 
 [Mesh]
 # First generate the concentric circles of the fuel, gap, clad, and surrounding hexagon for the sodium.
@@ -10,7 +10,7 @@ fuel_height = 300
     num_sides = 6
     num_sectors_per_side = '4 4 4 4 4 4'
     polygon_size_style = apothem
-    polygon_size = ${fparse 1.2  * clad_radius}
+    polygon_size = ${fparse 1.165113  * clad_radius}
     ring_radii = '${pellet_radius} ${hole_radius} ${clad_radius}'
     ring_intervals = '4 4 4'
     quad_center_elements = true
