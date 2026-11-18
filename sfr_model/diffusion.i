@@ -17,22 +17,22 @@ velocity_interp_method = 'rc'
   # Sodium velocity
   [vel_x]
     type = INSFVVelocityVariable
-    block = 'sodium gap'
+    block = 'sodium'
   []
 
   [vel_y]
     type = INSFVVelocityVariable
-    block = 'sodium gap'
+    block = 'sodium'
   []
 
   [vel_z]
     type = INSFVVelocityVariable
-    block = 'sodium gap'
+    block = 'sodium'
   []
 
   [pressure]
     type = INSFVPressureVariable
-    block = 'sodium gap'
+    block = 'sodium'
   []
 
   [temp_fluid]
@@ -41,11 +41,11 @@ velocity_interp_method = 'rc'
     block = 'sodium gap'
   []
 
-  [lambda]
-    family = SCALAR
-    order = first
-    block = 'sodium gap'
-  []
+#  [lambda]
+#    family = SCALAR
+#    order = first
+#    block = 'sodium gap'
+#  []
 []
 
 [AuxVariables]
@@ -63,7 +63,7 @@ velocity_interp_method = 'rc'
     x = vel_x
     y = vel_y
     z = vel_z
-    block = 'sodium gap'
+    block = 'sodium'
   []
 []
 
@@ -74,7 +74,7 @@ velocity_interp_method = 'rc'
     v = vel_y
     w = vel_z
     pressure = pressure
-    block = 'sodium gap'
+    block = 'sodium'
   []
 []
 
@@ -85,15 +85,8 @@ velocity_interp_method = 'rc'
     advected_interp_method = ${advected_interp_method}
     velocity_interp_method = ${velocity_interp_method}
     rho = rho
-    block = 'sodium gap'
+    block = 'sodium'
   []
-  [mean_zero_pressure]
-    type = FVIntegralValueConstraint
-    variable = pressure
-    lambda = lambda
-    block = 'sodium gap'
-  []
-
 
   [u_advection]
     type = INSFVMomentumAdvection
@@ -102,21 +95,21 @@ velocity_interp_method = 'rc'
     advected_interp_method = ${advected_interp_method}
     rho = rho
     momentum_component = 'x'
-    block = 'sodium gap'
+    block = 'sodium'
   []
   [u_viscosity]
     type = INSFVMomentumDiffusion
     variable = vel_x
     mu = mu
     momentum_component = 'x'
-    block = 'sodium gap'
+    block = 'sodium'
   []
   [u_pressure]
     type = INSFVMomentumPressure
     variable = vel_x
     momentum_component = 'x'
     pressure = pressure
-    block = 'sodium gap'
+    block = 'sodium'
   []
 
   [v_advection]
@@ -126,21 +119,21 @@ velocity_interp_method = 'rc'
     advected_interp_method = ${advected_interp_method}
     rho = rho
     momentum_component = 'y'
-    block = 'sodium gap'
+    block = 'sodium'
   []
   [v_viscosity]
     type = INSFVMomentumDiffusion
     variable = vel_y
     mu = mu
     momentum_component = 'y'
-    block = 'sodium gap'
+    block = 'sodium'
   []
   [v_pressure]
     type = INSFVMomentumPressure
     variable = vel_y
     momentum_component = 'y'
     pressure = pressure
-    block = 'sodium gap'
+    block = 'sodium'
   []
 
   [w_advection]
@@ -150,21 +143,21 @@ velocity_interp_method = 'rc'
     advected_interp_method = ${advected_interp_method}
     rho = rho
     momentum_component = 'z'
-    block = 'sodium gap'
+    block = 'sodium'
   []
   [w_viscosity]
     type = INSFVMomentumDiffusion
     variable = vel_z
     mu = mu
     momentum_component = 'z'
-    block = 'sodium gap'
+    block = 'sodium'
   []
   [w_pressure]
     type = INSFVMomentumPressure
     variable = vel_z
     momentum_component = 'z'
     pressure = pressure
-    block = 'sodium gap'
+    block = 'sodium'
   []
 
   [temp_conduction]
@@ -180,7 +173,7 @@ velocity_interp_method = 'rc'
     advected_quantity = rho_h
     velocity_interp_method = ${velocity_interp_method}
     advected_interp_method = ${advected_interp_method}
-    block = 'sodium gap'
+    block = 'sodium'
   []
 
   [fuel_conduction]
@@ -207,10 +200,12 @@ velocity_interp_method = 'rc'
 
 [Executioner]
   type = Steady
+  verbose = true
   solve_type = 'NEWTON'
   petsc_options_iname = '-pc_type -pc_factor_shift_type'
   petsc_options_value = 'lu NONZERO'
   nl_rel_tol = 1e-12
+  nl_max_its = 5000
 []
 
 [Outputs]

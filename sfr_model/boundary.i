@@ -3,7 +3,9 @@
   file = ./geometry_in.e
 []
 
-inlet_rate = 30
+inlet_rate = 15         #m/s
+outlet_pressure = 5000  #In pa
+inlet_temp = 600        #K
 
 [Functions]
   [linear_heat]
@@ -24,28 +26,42 @@ inlet_rate = 30
 []
 
 [FVBCs]
-  [outlet_x]
+  [inlet_vel_x]
     type = INSFVInletVelocityBC
-    boundary = sodium_outlet
+    boundary = sodium_inlet
     variable = vel_x
     functor = 0
   []
-  [outlet_y]
+  [inlet_vel_y]
     type = INSFVInletVelocityBC
-    boundary = sodium_outlet
+    boundary = sodium_inlet
     variable = vel_y
     functor = 0
   []
-  [outlet_z]
+  [inlet_vel_z]
     type = INSFVInletVelocityBC
-    boundary = sodium_outlet
+    boundary = sodium_inlet
     variable = vel_z
     functor = ${inlet_rate}
   []
 
+  [inlet_temp]
+    type = FVDirichletBC
+    boundary = sodium_inlet
+    variable = temp_fluid
+    value = ${inlet_temp}
+  []
+
+  [outlet_pressure]
+    type = INSFVOutletPressureBC
+    boundary = sodium_outlet
+    variable = pressure
+    function = ${outlet_pressure}
+  []
+
   [side_x]
     type = INSFVSymmetryVelocityBC
-    boundary = 10000
+    boundary = 100
     variable = vel_x
     u = vel_x
     v = vel_y
@@ -56,7 +72,7 @@ inlet_rate = 30
 
   [side_y]
     type = INSFVSymmetryVelocityBC
-    boundary = 10000
+    boundary = 100
     variable = vel_y
     u = vel_x
     v = vel_y
@@ -67,7 +83,7 @@ inlet_rate = 30
 
   [side_z]
     type = INSFVSymmetryVelocityBC
-    boundary = 10000
+    boundary = 100
     variable = vel_z
     u = vel_x
     v = vel_y
@@ -78,8 +94,27 @@ inlet_rate = 30
 
   [side_pressure]
     type = INSFVSymmetryPressureBC
-    boundary = 10000
+    boundary = 100
     variable = pressure
+  []
+
+  [no_slip_x]
+    type = INSFVNoSlipWallBC
+    boundary = 'clad_sodium_sodium_side'
+    variable = vel_x
+    function = 0
+  []
+  [no_slip_y]
+    type = INSFVNoSlipWallBC
+    boundary = 'clad_sodium_sodium_side'
+    variable = vel_y
+    function = 0
+  []
+  [no_slip_z]
+    type = INSFVNoSlipWallBC
+    boundary = 'clad_sodium_sodium_side'
+    variable = vel_z
+    function = 0
   []
 []
 
