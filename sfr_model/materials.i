@@ -2,7 +2,7 @@
   [sodium_viscosity]
     type = ADGenericFunctorMaterial
     prop_names = 'mu'
-    prop_values = '0.0026' #In Pa/s
+    prop_values = '0.00026' #In Pa s
     block = 'sodium gap'
   []
   

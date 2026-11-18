@@ -12,14 +12,14 @@ fuel_height = 0.9
     polygon_size_style = apothem
     polygon_size = ${fparse 1.165113  * clad_radius}
     ring_radii = '${pellet_radius} ${hole_radius} ${clad_radius}'
-    ring_intervals = '4 4 4'
+    ring_intervals = '8 4 6'
     quad_center_elements = true
 
     ring_block_ids = '1 2 3'
     ring_block_names = 'pellet gap clad'
 
     background_block_ids = 4
-    background_intervals = 5
+    background_intervals = 8
     background_block_names = sodium
 
     external_boundary_id = 100
@@ -43,7 +43,7 @@ fuel_height = 0.9
     type = AdvancedExtruderGenerator
     input = concentric_circle
     heights = ${fuel_height}
-    num_layers = 1
+    num_layers = 100 
     direction = '0 0 1'
   []
   
