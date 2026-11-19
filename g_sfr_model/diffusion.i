@@ -193,6 +193,12 @@ velocity_interp_method = 'rc'
     block = clad
   []
 
+  [heat_source]
+    type = FVBodyForce
+    variable = temp_solid
+    function = volumetric_heat
+    block = pellet
+  []
   # =========================================================================
   # TRANSIENT TIME DERIVATIVE KERNELS (Uncomment all below for transient runs)
   # =========================================================================
@@ -250,7 +256,7 @@ velocity_interp_method = 'rc'
   petsc_options_value = 'lu NONZERO'
   nl_rel_tol = 1e-10
   nl_abs_tol = 1e-10
-  nl_max_its = 30
+  nl_max_its = 500
   line_search = 'bt'
 []
 

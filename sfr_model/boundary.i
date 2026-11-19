@@ -4,7 +4,7 @@
 []
 
 inlet_rate = 15         #m/s
-outlet_pressure = 5000  #In pa
+outlet_pressure = 75000  #In pa
 inlet_temp = 600        #K
 
 [Functions]

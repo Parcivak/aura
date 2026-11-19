@@ -42,7 +42,7 @@
   []
 []
 
-[Functions]
+#[Functions]
   # Optional ParsedFunctions (kept commented for reference; FVDiffusion uses the FunctorMaterials above)
   # [k_fuel]
   #   type = ParsedFunction
@@ -54,11 +54,11 @@
   # []
 
   # Kept active so [Materials]/[clad] parses cleanly now and is ready for transient runs
-  [cp_clad]
-    type = ParsedFunction
-    expression = '0.257*t + 380' # [J/kg-K]
-  []
-[]
+#  [cp_clad]
+#    type = ParsedFunction
+#    expression = '0.257*t + 380' # [J/kg-K]
+#  []
+#[]
 
 [Materials]
   # Used for transient heat capacity (rho * cp * dT/dt) when transient kernels are enabled
@@ -75,7 +75,7 @@
     type = HeatConductionMaterial
     block = clad
     temperature = temp_solid
-    specific_heat_temperature_function = cp_clad
+#    specific_heat_temperature_function = cp_clad
     # density = 7750 # [kg/m^3] Uncomment and set HT9 cladding density for transient runs
     declare_suffix = clad
   []

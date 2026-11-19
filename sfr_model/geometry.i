@@ -43,7 +43,7 @@ fuel_height = 0.9
     type = AdvancedExtruderGenerator
     input = concentric_circle
     heights = ${fuel_height}
-    num_layers = 100 
+    num_layers = 50
     direction = '0 0 1'
   []
   

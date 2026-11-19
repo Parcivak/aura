@@ -18,21 +18,25 @@ velocity_interp_method = 'rc'
   [vel_x]
     type = INSFVVelocityVariable
     block = 'sodium'
+    initial_condition = 0
   []
 
   [vel_y]
     type = INSFVVelocityVariable
     block = 'sodium'
+    initial_condition = 0
   []
 
   [vel_z]
     type = INSFVVelocityVariable
     block = 'sodium'
+    initial_condition = 4
   []
 
   [pressure]
     type = INSFVPressureVariable
     block = 'sodium'
+    initial_condition = 200000
   []
 
   [temp_fluid]
