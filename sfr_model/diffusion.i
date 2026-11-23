@@ -10,7 +10,7 @@ velocity_interp_method = 'rc'
 [Variables]
   [temp_solid]	
     type = MooseVariableFVReal
-    initial_condition = 800
+    initial_condition = 1200
     block = 'pellet clad'
   []
 
@@ -30,18 +30,16 @@ velocity_interp_method = 'rc'
   [vel_z]
     type = INSFVVelocityVariable
     block = 'sodium'
-    initial_condition = 4
+    initial_condition = 6
   []
 
   [pressure]
     type = INSFVPressureVariable
     block = 'sodium'
-    initial_condition = 200000
   []
 
   [temp_fluid]
     type = INSFVEnergyVariable
-    initial_condition = 600
     block = 'sodium gap'
   []
 
@@ -50,6 +48,22 @@ velocity_interp_method = 'rc'
 #    order = first
 #    block = 'sodium gap'
 #  []
+[]
+
+[FVICs]
+  [pressure_ic]
+    type = FVFunctionIC
+    variable = pressure
+    function = initial_pressure
+    block = sodium
+  []
+
+  [temp_ic]
+    type = FVFunctionIC
+    variable = temp_fluid
+    function = initial_fluid_temp
+    block = sodium
+  []
 []
 
 [AuxVariables]
@@ -208,7 +222,8 @@ velocity_interp_method = 'rc'
   solve_type = 'NEWTON'
   petsc_options_iname = '-pc_type -pc_factor_shift_type'
   petsc_options_value = 'lu NONZERO'
-  nl_rel_tol = 1e-12
+  line_search = 'bt'
+  nl_rel_tol = 1e-8
   nl_max_its = 5000
   automatic_scaling = true
 []

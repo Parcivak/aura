@@ -8,18 +8,18 @@ fuel_height = 0.9
   [concentric_circle]
     type = PolygonConcentricCircleMeshGenerator
     num_sides = 6
-    num_sectors_per_side = '4 4 4 4 4 4'
+    num_sectors_per_side = '2 2 2 2 2 2'
     polygon_size_style = apothem
     polygon_size = ${fparse 1.165113  * clad_radius}
     ring_radii = '${pellet_radius} ${hole_radius} ${clad_radius}'
-    ring_intervals = '8 4 6'
+    ring_intervals = '4 1 1'
     quad_center_elements = true
 
     ring_block_ids = '1 2 3'
     ring_block_names = 'pellet gap clad'
 
     background_block_ids = 4
-    background_intervals = 8
+    background_intervals = 4
     background_block_names = sodium
 
     external_boundary_id = 100
@@ -43,7 +43,7 @@ fuel_height = 0.9
     type = AdvancedExtruderGenerator
     input = concentric_circle
     heights = ${fuel_height}
-    num_layers = 50
+    num_layers = 60
     direction = '0 0 1'
   []
   

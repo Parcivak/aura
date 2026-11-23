@@ -3,9 +3,15 @@
   file = ./geometry_in.e
 []
 
-inlet_rate = 15         #m/s
-outlet_pressure = 75000  #In pa
-inlet_temp = 600        #K
+inlet_pressure = 150000  #In pa
+outlet_pressure = 100000 #In pa
+inlet_temp = 823.15      #K, (550 C)
+outlet_temp = 1023.15    #K, (750 C)
+
+pellet_radius =  0.00227097  # [m]
+hole_radius = 0.00268089     # [m]
+clad_radius = 0.00309081     # [m]
+fuel_height = 0.9            # [m]
 
 [Functions]
   [linear_heat]
@@ -23,28 +29,19 @@ inlet_temp = 600        #K
     symbol_values = 'linear_heat 0.00227097' # radius in meters
     expression = 'q / (pi * r^2)'
   []
+
+  [initial_pressure]
+    type = ParsedFunction
+    expression = '${inlet_pressure} + ((${outlet_pressure} - ${inlet_pressure})/ ${fuel_height}) * z'
+  []
+
+  [initial_fluid_temp]
+    type = ParsedFunction
+    expression = '${inlet_temp} + ((${outlet_temp} -${inlet_temp})/ ${fuel_height}) * z'
+  []
 []
 
 [FVBCs]
-  [inlet_vel_x]
-    type = INSFVInletVelocityBC
-    boundary = sodium_inlet
-    variable = vel_x
-    functor = 0
-  []
-  [inlet_vel_y]
-    type = INSFVInletVelocityBC
-    boundary = sodium_inlet
-    variable = vel_y
-    functor = 0
-  []
-  [inlet_vel_z]
-    type = INSFVInletVelocityBC
-    boundary = sodium_inlet
-    variable = vel_z
-    functor = ${inlet_rate}
-  []
-
   [inlet_temp]
     type = FVDirichletBC
     boundary = sodium_inlet
@@ -52,6 +49,12 @@ inlet_temp = 600        #K
     value = ${inlet_temp}
   []
 
+  [inlet_pressure]
+    type = INSFVOutletPressureBC
+    boundary = sodium_inlet
+    variable = pressure
+    function = ${inlet_pressure}
+  []
   [outlet_pressure]
     type = INSFVOutletPressureBC
     boundary = sodium_outlet
