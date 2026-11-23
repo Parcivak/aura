@@ -1,0 +1,190 @@
+[36mThe following total 7 aux variables:
+  T_from_h
+  cp
+  drho_dT
+  drho_dh
+  h
+  k
+  rho
+are added for automatic output by MaterialOutputAction.[39m
+Finished Setting Up                                                                      [[33m  1.31 s[39m] [[33m  290 MB[39m]
+Framework Information:
+MOOSE Version:           git commit c10afb69de on 2026-04-17
+LibMesh Version:         
+PETSc Version:           3.24.5
+SLEPc Version:           3.24.0
+Current Time:            Wed Nov 18 15:41:09 2026
+Executable Timestamp:    Tue Oct 20 13:00:41 2026
+
+Input File(s):
+  /home/abfcr/projects/aura/g_sfr_model/diffusion.i
+
+Command Line Argument(s):
+  -snes_linesearch_monitor
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  User Checkpoint:         Disabled
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          16
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   
+    Total:                 20470
+    Local:                 1567
+    Min/Max/Avg:           952/1567/1279
+  Elems:                   
+    Total:                 19440
+    Local:                 1195
+    Min/Max/Avg:           1191/1251/1215
+  Num Subdomains:          4
+  Num Partitions:          16
+  Partitioner:             metis
+
+Nonlinear System:
+  Num DOFs:                41040
+  Num Local DOFs:          1195
+  Variables:               "temp_solid" { "vel_x" "vel_y" "vel_z" "pressure" } "temp_fluid" 
+  Finite Element Types:    "MONOMIAL" "MONOMIAL" "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" "CONSTANT" "CONSTANT" 
+
+Auxiliary System:
+  Num DOFs:                141480
+  Num Local DOFs:          8365
+  Variables:               "U" { "T_from_h" "cp" "drho_dT" "drho_dh" "h" "k" "rho" } 
+  Finite Element Types:    "MONOMIAL" "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" "CONSTANT" 
+
+Execution Information:
+  Executioner:             Steady
+  Solver Mode:             NEWTON 
+  PETSc Preconditioner:    lu 
+  MOOSE Preconditioner:    SMP (auto) 
+
+ 0 Nonlinear |R| = [32m8.678042e-02[39m
+      0 Linear |R| = [32m8.678042e-02[39m
+      1 Linear |R| = [32m1.656241e-07[39m
+      Line search: gnorm after quadratic fit 7.843167793055e-02
+      Line search: Quadratically determined step, lambda=1.0000000000000001e-01
+ 1 Nonlinear |R| = [32m7.843168e-02[39m
+      0 Linear |R| = [32m7.843168e-02[39m
+      1 Linear |R| = [32m1.571245e-07[39m
+      Line search: gnorm after quadratic fit 7.141962567715e-02
+      Line search: Quadratically determined step, lambda=1.0000000000000001e-01
+ 2 Nonlinear |R| = [32m7.141963e-02[39m
+      0 Linear |R| = [32m7.141963e-02[39m
+      1 Linear |R| = [32m1.386857e-07[39m
+      Line search: gnorm after quadratic fit 6.544038883157e-02
+      Line search: Quadratically determined step, lambda=1.0000000000000001e-01
+ 3 Nonlinear |R| = [32m6.544039e-02[39m
+      0 Linear |R| = [32m6.544039e-02[39m
+      1 Linear |R| = [32m1.262931e-07[39m
+      Line search: gnorm after quadratic fit 6.025796767397e-02
+      Line search: Quadratically determined step, lambda=1.0000000000000001e-01
+ 4 Nonlinear |R| = [32m6.025797e-02[39m
+      0 Linear |R| = [32m6.025797e-02[39m
+      1 Linear |R| = [32m1.158277e-07[39m
+      Line search: gnorm after quadratic fit 5.569053831843e-02
+      Line search: Quadratically determined step, lambda=1.0000000000000001e-01
+ 5 Nonlinear |R| = [32m5.569054e-02[39m
+      0 Linear |R| = [32m5.569054e-02[39m
+      1 Linear |R| = [32m1.035659e-07[39m
+      Line search: gnorm after quadratic fit 5.159990203213e-02
+      Line search: Quadratically determined step, lambda=1.0000000000000001e-01
+ 6 Nonlinear |R| = [32m5.159990e-02[39m
+      0 Linear |R| = [32m5.159990e-02[39m
+      1 Linear |R| = [32m9.202670e-08[39m
+      Line search: gnorm after quadratic fit 4.788278708104e-02
+      Line search: Quadratically determined step, lambda=1.0000000000000001e-01
+ 7 Nonlinear |R| = [32m4.788279e-02[39m
+      0 Linear |R| = [32m4.788279e-02[39m
+      1 Linear |R| = [32m8.480635e-08[39m
+      Line search: gnorm after quadratic fit 4.446349957898e-02
+      Line search: Quadratically determined step, lambda=1.0000000000000001e-01
+ 8 Nonlinear |R| = [32m4.446350e-02[39m
+      0 Linear |R| = [32m4.446350e-02[39m
+      1 Linear |R| = [32m7.652094e-08[39m
+      Line search: gnorm after quadratic fit 4.128772212343e-02
+      Line search: Quadratically determined step, lambda=1.0000000000000001e-01
+ 9 Nonlinear |R| = [32m4.128772e-02[39m
+      0 Linear |R| = [32m4.128772e-02[39m
+      1 Linear |R| = [32m6.841896e-08[39m
+      Line search: gnorm after quadratic fit 3.831734594529e-02
+      Line search: Quadratically determined step, lambda=1.0000000000000001e-01
+10 Nonlinear |R| = [32m3.831735e-02[39m
+      0 Linear |R| = [32m3.831735e-02[39m
+      1 Linear |R| = [32m6.274637e-08[39m
+      Line search: gnorm after quadratic fit 3.552623631287e-02
+      Line search: Quadratically determined step, lambda=1.0000000000000001e-01
+11 Nonlinear |R| = [32m3.552624e-02[39m
+      0 Linear |R| = [32m3.552624e-02[39m
+      1 Linear |R| = [32m5.663196e-08[39m
+      Line search: gnorm after quadratic fit 3.289684627923e-02
+      Line search: Quadratically determined step, lambda=1.0000000000000001e-01
+12 Nonlinear |R| = [32m3.289685e-02[39m
+      0 Linear |R| = [32m3.289685e-02[39m
+      1 Linear |R| = [32m5.063218e-08[39m
+      Line search: gnorm after quadratic fit 3.041754361659e-02
+      Line search: Quadratically determined step, lambda=1.0000000000000001e-01
+13 Nonlinear |R| = [32m3.041754e-02[39m
+      0 Linear |R| = [32m3.041754e-02[39m
+      1 Linear |R| = [32m4.623627e-08[39m
+      Line search: gnorm after quadratic fit 2.808058333053e-02
+      Line search: Quadratically determined step, lambda=1.0000000000000001e-01
+14 Nonlinear |R| = [32m2.808058e-02[39m
+      0 Linear |R| = [32m2.808058e-02[39m
+      1 Linear |R| = [32m4.175374e-08[39m
+      Line search: gnorm after quadratic fit 2.588058146953e-02
+      Line search: Quadratically determined step, lambda=1.0000000000000001e-01
+15 Nonlinear |R| = [32m2.588058e-02[39m
+      0 Linear |R| = [32m2.588058e-02[39m
+      1 Linear |R| = [32m3.712128e-08[39m
+      Line search: gnorm after quadratic fit 2.367297231986e-02
+      Line search: Quadratically determined step, lambda=1.0948162690993182e-01
+16 Nonlinear |R| = [32m2.367297e-02[39m
+      0 Linear |R| = [32m2.367297e-02[39m
+      1 Linear |R| = [32m3.255590e-08[39m
+      Line search: gnorm after quadratic fit 2.131600738762e-02
+      Line search: Quadratically determined step, lambda=1.3199047227690180e-01
+17 Nonlinear |R| = [32m2.131601e-02[39m
+      0 Linear |R| = [32m2.131601e-02[39m
+      1 Linear |R| = [32m2.833251e-08[39m
+      Line search: gnorm after quadratic fit 1.875295147754e-02
+      Line search: Quadratically determined step, lambda=1.6698927284690110e-01
+18 Nonlinear |R| = [32m1.875295e-02[39m
+      0 Linear |R| = [32m1.875295e-02[39m
+      1 Linear |R| = [32m2.360292e-08[39m
+      Line search: gnorm after quadratic fit 1.589398442855e-02
+      Line search: Quadratically determined step, lambda=2.2736084312469307e-01
+19 Nonlinear |R| = [32m1.589398e-02[39m
+      0 Linear |R| = [32m1.589398e-02[39m
+      1 Linear |R| = [32m1.826986e-08[39m
+      Line search: gnorm after quadratic fit 1.258318642444e-02
+      Line search: Quadratically determined step, lambda=3.4736033113348175e-01
+20 Nonlinear |R| = [32m1.258319e-02[39m
+      0 Linear |R| = [32m1.258319e-02[39m
+      1 Linear |R| = [32m1.227975e-08[39m
+      Line search: Using full step: fnorm 1.258318642444e-02 gnorm 9.964941142538e-03
+21 Nonlinear |R| = [32m9.964941e-03[39m
+      0 Linear |R| = [32m9.964941e-03[39m
+      1 Linear |R| = [32m2.669937e-11[39m
+      Line search: Using full step: fnorm 9.964941142538e-03 gnorm 1.003754097944e-05
+22 Nonlinear |R| = [32m1.003754e-05[39m
+      0 Linear |R| = [32m1.003754e-05[39m
+      1 Linear |R| = [32m3.358770e-16[39m
+      Line search: Using full step: fnorm 1.003754097944e-05 gnorm 7.687054564311e-08
+23 Nonlinear |R| = [32m7.687055e-08[39m
+[32m Solve Converged![39m
+Currently Executing
+  Finished Solving                                                                       [[33m 71.63 s[39m] [[33m  389 MB[39m]
+
+Outlier Variable Residual Norms:
+  temp_fluid: [31m7.687054e-08[39m
+Finished Executing                                                                       [[33m 72.16 s[39m] [[33m  389 MB[39m]

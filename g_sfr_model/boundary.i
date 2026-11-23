@@ -3,7 +3,7 @@
   file = ./geometry_in.e
 []
 
-inlet_rate = 4   # [m/s] Axial inlet velocity (adjust to target mass flow rate)
+inlet_rate = 12   # [m/s] Axial inlet velocity (adjust to target mass flow rate)
 inlet_temp = 650  # [K]   Sodium inlet temperature
 
 [Functions]
@@ -20,7 +20,7 @@ inlet_temp = 650  # [K]   Sodium inlet temperature
     type = ParsedFunction
     symbol_names = 'q r'
     symbol_values = 'linear_heat 0.00227097' # radius in meters
-    expression = 'q / (pi * r^2)'
+    expression = '(q / (pi * r^2)) * min(t / 0.5, 1.0)'
   []
 []
 

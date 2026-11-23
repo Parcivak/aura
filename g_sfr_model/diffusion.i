@@ -1,7 +1,7 @@
 !include ./boundary.i
 !include ./materials.i
 
-advected_interp_method = 'average'
+advected_interp_method = 'upwind'
 velocity_interp_method = 'rc'
 
 [GlobalParams]
@@ -51,6 +51,7 @@ velocity_interp_method = 'rc'
     order = CONSTANT
     family = MONOMIAL
     fv = true
+    initial_condition = ${inlet_rate}
     block = sodium
   []
 []
@@ -202,77 +203,85 @@ velocity_interp_method = 'rc'
   # =========================================================================
   # TRANSIENT TIME DERIVATIVE KERNELS (Uncomment all below for transient runs)
   # =========================================================================
-  # [u_time]
-  #   type = INSFVMomentumTimeDerivative
-  #   variable = vel_x
-  #   rho = rho
-  #   momentum_component = 'x'
-  #   block = sodium
-  # []
-  # [v_time]
-  #   type = INSFVMomentumTimeDerivative
-  #   variable = vel_y
-  #   rho = rho
-  #   momentum_component = 'y'
-  #   block = sodium
-  # []
-  # [w_time]
-  #   type = INSFVMomentumTimeDerivative
-  #   variable = vel_z
-  #   rho = rho
-  #   momentum_component = 'z'
-  #   block = sodium
-  # []
-  # [temp_fluid_time]
-  #   type = INSFVEnergyTimeDerivative
-  #   variable = temp_fluid
-  #   rho = rho
-  #   dh_dt = dh_dt
-  #   block = 'sodium gap'
-  # []
-  # [fuel_time]
-  #   type = FVHeatConductionTimeDerivativeAD
-  #   variable = temp_solid
-  #   density = density_fuel
-  #   specific_heat = specific_heat_fuel
-  #   block = pellet
-  # []
-  # [clad_time]
-  #   type = FVHeatConductionTimeDerivativeAD
-  #   variable = temp_solid
-  #   density = density_clad
-  #   specific_heat = specific_heat_clad
-  #   block = clad
-  # []
+   [u_time]
+     type = INSFVMomentumTimeDerivative
+     variable = vel_x
+     rho = rho
+     momentum_component = 'x'
+     block = sodium
+   []
+   [v_time]
+     type = INSFVMomentumTimeDerivative
+     variable = vel_y
+     rho = rho
+     momentum_component = 'y'
+     block = sodium
+   []
+   [w_time]
+     type = INSFVMomentumTimeDerivative
+     variable = vel_z
+     rho = rho
+     momentum_component = 'z'
+     block = sodium
+   []
+   [temp_fluid_time]
+     type = INSFVEnergyTimeDerivative
+     variable = temp_fluid
+     rho = rho
+     dh_dt = dh_dt
+     block = 'sodium gap'
+   []
+   [fuel_time]
+     type = FVHeatConductionTimeDerivative
+     variable = temp_solid
+     specific_heat = specific_heat_fuel
+     block = pellet
+   []
+   [clad_time]
+     type = FVHeatConductionTimeDerivative
+     variable = temp_solid
+     specific_heat = specific_heat_clad
+     block = clad
+   []
 []
 
 # ===========================================================================
 # EXECUTIONER (Comment out [Executioner] below & uncomment Transient for transients)
 # ===========================================================================
+# [Executioner]
+#  type = Steady
+#  solve_type = 'NEWTON'
+#  petsc_options_iname = '-pc_type -pc_factor_shift_type'
+#  petsc_options_value = 'lu NONZERO'
+#  nl_rel_tol = 1e-7
+#  nl_abs_tol = 1e-7
+#  nl_max_its = 500
+#  line_search = 'bt'
+# []
+
 [Executioner]
-  type = Steady
+  type = Transient
   solve_type = 'NEWTON'
   petsc_options_iname = '-pc_type -pc_factor_shift_type'
   petsc_options_value = 'lu NONZERO'
+  automatic_scaling = true
+  start_time = 0.0
+  end_time = 5.0
+  [TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 0.005
+    optimal_iterations = 4
+    iteration_window = 1
+    growth_factor = 1.25
+    cutback_factor = 0.5
+  []
+  dtmax = 0.02
   nl_rel_tol = 1e-7
   nl_abs_tol = 1e-7
-  nl_max_its = 500
-  line_search = 'bt'
+  nl_max_its = 30
+  steady_state_detection = true
+  steady_state_tolerance = 1e-7
 []
-
-# [Executioner]
-#   type = Transient
-#   solve_type = 'NEWTON'
-#   petsc_options_iname = '-pc_type -pc_factor_shift_type'
-#   petsc_options_value = 'lu NONZERO'
-#   start_time = 0.0
-#   end_time = 10.0
-#   dt = 0.05
-#   nl_rel_tol = 1e-8
-#   nl_abs_tol = 1e-8
-#   # steady_state_detection = true
-#   # steady_state_tolerance = 1e-8
-# []
 
 [Outputs]
   exodus = true

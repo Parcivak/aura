@@ -87,3 +87,10 @@ sfr_model/sync.sh
 
 #emacs
 \#*\#
+
+# MOOSE & Slurm outputs
+*.e*
+*_cp/
+*.out
+*.err
+tmp_jit_*
