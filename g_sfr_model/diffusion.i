@@ -36,6 +36,7 @@ velocity_interp_method = 'rc'
 
   [pressure]
     type = INSFVPressureVariable
+    initial_condition = 200000
     block = sodium
   []
 
@@ -54,6 +55,12 @@ velocity_interp_method = 'rc'
     initial_condition = ${inlet_rate}
     block = sodium
   []
+  [rho_out]
+    order = CONSTANT
+    family = MONOMIAL
+    fv = true
+    block = 'sodium gap'
+  []
 []
 
 [AuxKernels]
@@ -64,6 +71,12 @@ velocity_interp_method = 'rc'
     y = vel_y
     z = vel_z
     block = sodium
+  []
+  [rho_aux]
+    type = FunctorAux
+    variable = rho_out
+    functor = rho
+    block = 'sodium gap'
   []
 []
 
@@ -161,6 +174,14 @@ velocity_interp_method = 'rc'
     pressure = pressure
     block = sodium
   []
+  [w_gravity]
+    type = INSFVMomentumGravity
+    variable = vel_z
+    rho = rho
+    gravity = '0 0 -9.81'
+    momentum_component = 'z'
+    block = sodium
+  []
 
   # --- Fluid & Gap Energy Conservation ---
   [temp_conduction]
@@ -245,6 +266,40 @@ velocity_interp_method = 'rc'
    []
 []
 
+[Postprocessors]
+  [mdot_in]
+    type = VolumetricFlowRate
+    boundary = sodium_inlet
+    vel_x = vel_x
+    vel_y = vel_y
+    vel_z = vel_z
+    advected_quantity = rho
+  []
+
+  [mdot_out]
+    type = VolumetricFlowRate
+    boundary = sodium_outlet
+    vel_x = vel_x
+    vel_y = vel_y
+    vel_z = vel_z
+    advected_quantity = rho
+  []
+
+  [max_T_clad]
+    type = ElementExtremeValue
+    variable = temp_solid
+    block = clad
+    value_type = max
+  []
+
+  [max_T_fluid]
+    type = ElementExtremeValue
+    variable = temp_fluid
+    block = sodium
+    value_type = max
+  []
+[]
+
 # ===========================================================================
 # EXECUTIONER (Comment out [Executioner] below & uncomment Transient for transients)
 # ===========================================================================
@@ -285,4 +340,5 @@ velocity_interp_method = 'rc'
 
 [Outputs]
   exodus = true
+  csv = true
 []

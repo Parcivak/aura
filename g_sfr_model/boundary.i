@@ -25,24 +25,12 @@ inlet_temp = 650  # [K]   Sodium inlet temperature
 []
 
 [FVBCs]
-  # --- Sodium Inlet (bottom, z = 0) ---
-  [inlet_x]
-    type = INSFVInletVelocityBC
+  # --- Defining pressure delta P around 50 kPa and from head, P_avg approx 200 kPa ---
+  [inlet_pressure]
+    type = INSFVOutletPressureBC
     boundary = sodium_inlet
-    variable = vel_x
-    functor = 0
-  []
-  [inlet_y]
-    type = INSFVInletVelocityBC
-    boundary = sodium_inlet
-    variable = vel_y
-    functor = 0
-  []
-  [inlet_z]
-    type = INSFVInletVelocityBC
-    boundary = sodium_inlet
-    variable = vel_z
-    functor = ${inlet_rate}
+    variable = pressure
+    functor = 260160 # [Pa] 200 kPa outlet + ~52.57 kPa friction ΔP + ~7.59 kPa hydrostatic head
   []
   [inlet_temperature]
     type = FVDirichletBC
@@ -51,13 +39,11 @@ inlet_temp = 650  # [K]   Sodium inlet temperature
     value = ${inlet_temp}
   []
 
-  # --- Sodium Outlet (top, z = fuel_height) ---
-  # Note: Do not apply velocity FVBCs on the outlet when using INSFVOutletPressureBC
   [outlet_pressure]
     type = INSFVOutletPressureBC
     boundary = sodium_outlet
     variable = pressure
-    functor = 0
+    functor = 200000 # [Pa] 200 kPa (0.2 MPa) reference operating pressure
   []
 
   # --- Cladding Outer Surface No-Slip Wall ---
